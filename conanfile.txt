@@ -1,0 +1,11 @@
+[requires]
+yaml-cpp/0.6.3
+
+[generators]
+cmake
+
+[options]
+# Possible yaml-cpp options are:
+#   - shared
+#   - fPIC
+yaml-cpp:shared=False
