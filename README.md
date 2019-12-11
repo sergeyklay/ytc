@@ -36,7 +36,7 @@ brew install cmake pkg-config
 Please note that specific versions of libraries and programs at the time of reading this guide may vary.
 The following dependencies is recommended install using [`pip`](https://pip.pypa.io):
 
-* `conan`
+- `conan`
 
 They can be installed using pip as follows:
 
@@ -57,6 +57,14 @@ Then build project as follows:
 
 ```shell script
 cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
+```
+
+Most likely, with clang 5.0 on Linux you'll need to specify `libstdc++`.
+Use `_GLIBCXX_USE_CXX11_ABI` as follows:
+
+```shell script
+cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -D_GLIBCXX_USE_CXX11_ABI=ON
 cmake --build build
 ```
 
