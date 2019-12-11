@@ -1,5 +1,5 @@
 # Add definition for config library.
-add_library(configmap STATIC configmap.cpp)
+add_library(configmap STATIC metadata.cpp configmap.cpp)
 
 target_include_directories(configmap
   PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
