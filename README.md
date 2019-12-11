@@ -37,4 +37,3 @@ For the full dependency list see `conanfile.txt` file located in the sources roo
 [cmake-link]: https://cmake.org/
 [conan-link]: https://conan.io
 [conan-examples]: https://github.com/conan-io/examples
-
