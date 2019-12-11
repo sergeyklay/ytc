@@ -101,8 +101,7 @@ jobs:
             cmake                        \
             -S .                         \
             -Bbuild                      \
-            -DCMAKE_BUILD_TYPE=Debug     \
-            -D_GLIBCXX_USE_CXX11_ABI=ON
+            -DCMAKE_BUILD_TYPE=Debug
           fi
 
           echo ::set-env name=YTC_TESTS_ROOT::${GITHUB_WORKSPACE}/tests
