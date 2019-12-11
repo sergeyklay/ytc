@@ -76,6 +76,24 @@ jobs:
           echo "::set-env name=CXX::$(xcrun -f clang++)"
           echo "::set-env name=SDKROOT::$(xcodebuild -version -sdk macosx Path)"
 
+      - uses: actions/cache@v1
+        name: Setup conan cache
+        id: conan-cache
+        with:
+          path: ~/.conan
+          key: ${{ runner.os }}-conan-${{ hashFiles('**/conanfile.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-conan-
+
+      - uses: actions/cache@v1
+        name: Setup pip cache
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
@@ -92,18 +110,7 @@ jobs:
           $CC --version
           cmake --version
 
-          if [ "${{ runner.os }}" = "macOS" ]; then
-            cmake                        \
-            -S .                         \
-            -Bbuild                      \
-            -DCMAKE_BUILD_TYPE=Debug
-          else
-            cmake                        \
-            -S .                         \
-            -Bbuild                      \
-            -DCMAKE_BUILD_TYPE=Debug
-          fi
-
+          cmake -S . -Bbuild -DCMAKE_BUILD_TYPE=Debug
           echo ::set-env name=YTC_TESTS_ROOT::${GITHUB_WORKSPACE}/tests
 
       - name: Build x64 Debug
