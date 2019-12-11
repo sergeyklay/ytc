@@ -47,7 +47,7 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Setup Prerequisites (Linux, Generic)
+      - name: Setup Prerequisites (Linux)
         if: runner.os == 'Linux'
         run: |
           echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
@@ -56,14 +56,12 @@ jobs:
           sudo apt-get update --quiet --yes 1>/dev/null
 
           if [ "${{ matrix.compiler }}" = "gcc" ]; then
-            sudo apt-get install --no-install-recommends --quiet --yes \
-              gcc-${{ matrix.version }}
+            sudo apt-get install --no-install-recommends -q -y gcc-${{ matrix.version }}
 
             echo "::set-env name=CC::gcc-${{ matrix.version }}"
             echo "::set-env name=CXX::g++-${{ matrix.version }}"
           else
-            sudo apt-get install --no-install-recommends --quiet --yes \
-              clang-${{ matrix.version }}
+            sudo apt-get install --no-install-recommends -q -y clang-${{ matrix.version }}
 
             echo "::set-env name=CC::clang-${{ matrix.version }}"
             echo "::set-env name=CXX::clang++-${{ matrix.version }}"
@@ -73,8 +71,10 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           sudo xcode-select -switch /Applications/Xcode.app
+
           echo "::set-env name=CC::$(xcrun -f clang)"
           echo "::set-env name=CXX::$(xcrun -f clang++)"
+          echo "::set-env name=SDKROOT::$(xcodebuild -version -sdk macosx Path)"
 
       - name: Setup Python
         uses: actions/setup-python@v1
@@ -93,16 +93,15 @@ jobs:
           cmake --version
 
           if [ "${{ runner.os }}" = "macOS" ]; then
-            cmake                              \
-            -S .                               \
-            -Bbuild                            \
-            -DCMAKE_BUILD_TYPE=Debug           \
-            -DCODE_COVERAGE=${{ matrix.ccov }}
+            cmake                        \
+            -S .                         \
+            -Bbuild                      \
+            -DCMAKE_BUILD_TYPE=Debug
           else
-            cmake                              \
-            -S .                               \
-            -Bbuild                            \
-            -DCMAKE_BUILD_TYPE=Debug           \
+            cmake                        \
+            -S .                         \
+            -Bbuild                      \
+            -DCMAKE_BUILD_TYPE=Debug     \
             -D_GLIBCXX_USE_CXX11_ABI=ON
           fi
 
