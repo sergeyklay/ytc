@@ -9,9 +9,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  auto file_path = argv[1];
-
-  YAML::Node doc = YAML::LoadFile(file_path);
+  YAML::Node doc = YAML::LoadFile(std::string(argv[1]));
   ConfigMapPtr cptr = std::make_shared<ConfigMap>();
 
   auto retval = YAML::convert<ConfigMapPtr>::decode(doc, cptr);
