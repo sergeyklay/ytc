@@ -24,7 +24,7 @@ target_link_libraries(configmap_test
 
 gtest_discover_tests(configmap_test
   TEST_PREFIX gtest:
-  PROPERTIES LABELS YamlTest)
+  PROPERTIES LABELS ConfigMapTest)
 
 add_custom_target(check
   COMMAND ctest --output-on-failure
