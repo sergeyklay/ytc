@@ -13,27 +13,11 @@ public:
 
   bool operator==(const ConfigMap &rhs) const;
 
-  [[nodiscard]] std::string GetVersion() const;
-  void SetVersion(std::string version);
-
-  [[nodiscard]] std::string GetKind() const;
-  void SetKind(std::string kind);
-
-  [[nodiscard]] Metadata GetMeta() const;
-  void SetMeta(Metadata meta);
-
-  [[nodiscard]] std::map<std::string, std::string> GetData() const;
-  void SetData(std::map<std::string, std::string> data);
-
-  [[nodiscard]] std::string GetFile() const;
-  void SetFile(std::string file);
-
-private:
-  std::string version_;
-  std::string kind_;
-  Metadata meta_;
-  std::map<std::string, std::string> data_;
-  std::string file_;
+  std::string version;
+  std::string kind;
+  Metadata meta;
+  std::map<std::string, std::string> data;
+  std::string file;
 };
 
 using ConfigMapPtr = std::shared_ptr<ConfigMap>;
