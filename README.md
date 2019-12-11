@@ -18,7 +18,7 @@ development and testing purposes.
 
 To build YTC you need the following requirements:
 
-- A C compiler such as  [Gcc][gcc link] >= 7.0.0, [Clang][clang link] >= 5.0.0 or [Apple Clang][apple link] >= 10.0.0
+- A C++ compiler such as [Gcc][gcc link] >= 7.0.0, [Clang][clang link] >= 5.0.0 or [Apple Clang][apple link] >= 10.0.0
 - [cmake][cmake link] 3.11 or later
 - [conan][conan link] decentralized package manager with a client-server architecture
 
@@ -35,7 +35,7 @@ brew install cmake pkg-config
 ```
 
 Please note that specific versions of libraries and programs at the time of reading this guide may vary.
-The following dependencies is recommended install using [`pip`](https://pip.pypa.io):
+The following dependencies is recommended install using [`pip`][pip link]:
 
 - `conan`
 
@@ -97,6 +97,7 @@ cmake --build build --target check
 [gcc link]: https://gcc.gnu.org
 [clang link]: https://clang.llvm.org
 [apple link]: https://apps.apple.com/us/app/xcode/id497799835
-[cmake link]: https://cmake.org/
+[cmake link]: https://cmake.org
 [conan link]: https://conan.io
 [conan examples]: https://github.com/conan-io/examples
+[pip link]: https://pip.pypa.io
