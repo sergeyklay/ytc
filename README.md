@@ -70,8 +70,9 @@ cmake --build build
 
 ## Running the tests
 
-Tests requires `YTC_TESTS_ROOT` environment variable to use fixtures.
-To run tests use commands from the project root as follows:
+Tests expect `YTC_TESTS_ROOT` environment variable to use fixtures. This
+variable should point to the test directory root. Set this variable and
+run the tests as follows:
 
 ```shell script
 export YTC_TESTS_ROOT=$(pwd)/tests

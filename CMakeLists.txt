@@ -31,6 +31,7 @@ conan_cmake_run(
   BASIC_SETUP CMAKE_TARGETS
   BUILD missing)
 
+# Adjusts the standard library flags (libc++`, libstdc++, libstdc++11)
 conan_set_libcxx()
 
 add_subdirectory(src)
