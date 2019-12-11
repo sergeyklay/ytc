@@ -67,13 +67,10 @@ jobs:
             echo "::set-env name=CXX::clang++-${{ matrix.version }}"
           fi
 
-          sudo apt-get install --no-install-recommends --quiet --yes wget
-          wget -qO- "https://cmake.org/files/v3.16/cmake-3.16.1-Linux-x86_64.tar.gz" | sudo tar -f --strip-components=1 -xz -C /usr/local
-
       - name: Setup Prerequisites (macOS)
         if: runner.os == 'macOS'
         run: |
-          brew install pkg-config llvm cmake
+          brew install pkg-config llvm
 
           sudo xcode-select -switch /Applications/Xcode.app
 
