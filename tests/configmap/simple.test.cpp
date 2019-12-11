@@ -1,7 +1,10 @@
+#include <gtest/gtest.h>
+#include <yaml-cpp/yaml.h>
+
+#include <string>
+
 #include "env/base.hpp"
 #include "ytc/configmap.hpp"
-#include <gtest/gtest.h>
-#include <string>
 
 TEST(ConfigMapTest, ParseFile) {
   auto tests_root = TestEnvironment::tests_root();
