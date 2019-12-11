@@ -47,21 +47,21 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Setup Prerequisites (Linux, Generic)
+      - name: Setup Prerequisites (Linux)
         if: runner.os == 'Linux'
         run: |
+          echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
           sudo apt-get update --quiet --yes 1>/dev/null
 
           if [ "${{ matrix.compiler }}" = "gcc" ]; then
-            sudo apt-get install --no-install-recommends --quiet --yes \
-              gcc-${{ matrix.version }}
+            sudo apt-get install --no-install-recommends -q -y gcc-${{ matrix.version }}
 
             echo "::set-env name=CC::gcc-${{ matrix.version }}"
             echo "::set-env name=CXX::g++-${{ matrix.version }}"
           else
-            sudo apt-get install --no-install-recommends --quiet --yes \
-              clang-${{ matrix.version }}
+            sudo apt-get install --no-install-recommends -q -y clang-${{ matrix.version }}
 
             echo "::set-env name=CC::clang-${{ matrix.version }}"
             echo "::set-env name=CXX::clang++-${{ matrix.version }}"
@@ -70,13 +70,11 @@ jobs:
       - name: Setup Prerequisites (macOS)
         if: runner.os == 'macOS'
         run: |
-          brew install pkg-config llvm
-
           sudo xcode-select -switch /Applications/Xcode.app
 
-          echo "::set-env name=CC::clang"
-          echo "::set-env name=CXX::clang++"
-          echo "::set-env name=PATH::$PATH:$(brew --prefix llvm)/bin"
+          echo "::set-env name=CC::$(xcrun -f clang)"
+          echo "::set-env name=CXX::$(xcrun -f clang++)"
+          echo "::set-env name=SDKROOT::$(xcodebuild -version -sdk macosx Path)"
 
       - name: Setup Python
         uses: actions/setup-python@v1
@@ -89,24 +87,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-
       - name: Configure x64 Debug
         run: |
           $CC --version
+          cmake --version
 
           if [ "${{ runner.os }}" = "macOS" ]; then
-            cmake                                  \
-                -S .                               \
-                -Bbuild/Debug                      \
-                -DCMAKE_BUILD_TYPE=Debug
+            cmake                        \
+            -S .                         \
+            -Bbuild                      \
+            -DCMAKE_BUILD_TYPE=Debug
           else
-            cmake                                  \
-                -S .                               \
-                -Bbuild/Debug                      \
-                -DCMAKE_BUILD_TYPE=Debug
+            cmake                        \
+            -S .                         \
+            -Bbuild                      \
+            -DCMAKE_BUILD_TYPE=Debug     \
+            -D_GLIBCXX_USE_CXX11_ABI=ON
           fi
 
           echo ::set-env name=YTC_TESTS_ROOT::${GITHUB_WORKSPACE}/tests
 
       - name: Build x64 Debug
-        run: cmake --build build/Debug -j "$(getconf _NPROCESSORS_ONLN)"
+        run: cmake --build build -j "$(getconf _NPROCESSORS_ONLN)"
+
+      - name: Run Tests
+        run: cmake --build build --target check

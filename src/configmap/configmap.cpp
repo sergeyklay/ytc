@@ -39,17 +39,25 @@ bool YAML::convert<ConfigMapPtr>::decode(const YAML::Node &node,
 }
 
 ConfigMap::ConfigMap()
-    : version_{"v1"}, kind_{"ConfigMap"}, meta_{}, data_{}, file_{""} {}
+    : version_{"alpha"}, kind_{"Sample"}, meta_{}, data_{}, file_{""} {}
 
+std::string ConfigMap::GetVersion() const { return version_; }
 void ConfigMap::SetVersion(std::string version) {
   version_ = std::move(version);
 }
+
+std::string ConfigMap::GetKind() const { return kind_; }
 void ConfigMap::SetKind(std::string kind) { kind_ = std::move(kind); }
+
+Metadata ConfigMap::GetMeta() const { return meta_; }
 void ConfigMap::SetMeta(Metadata meta) { meta_ = std::move(meta); }
 
+std::map<std::string, std::string> ConfigMap::GetData() const { return data_; }
 void ConfigMap::SetData(std::map<std::string, std::string> data) {
   data_ = std::move(data);
 }
+
+std::string ConfigMap::GetFile() const { return file_; }
 void ConfigMap::SetFile(std::string file) { file_ = std::move(file); }
 
 bool ConfigMap::operator==(const ConfigMap &rhs) const {

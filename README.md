@@ -23,6 +23,61 @@ To build YTC you need the following requirements:
 
 For the full dependency list see `conanfile.txt` file located in the sources root.
 
+If you're using Ubuntu, you can install the required packages this way:
+```shell script
+sudo apt install gcc cmake pkg-config build-essential
+```
+
+On macOS you will need to use brew with a command as follows:
+```shell script
+brew install cmake pkg-config
+```
+
+Please note that specific versions of libraries and programs at the time of reading this guide may vary.
+The following dependencies is recommended install using [`pip`](https://pip.pypa.io):
+
+- `conan`
+
+They can be installed using pip as follows:
+
+```shell script
+pip install -r requirements.txt
+```
+
+### Building
+
+First you'll need clone the project and fetch its modules:
+
+```shell script
+git clone https://github.com/sergeyklay/ytc
+cd ytc
+```
+
+Then build project as follows:
+
+```shell script
+cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug
+cmake --build build
+```
+
+Most likely, with clang 5.0 on Linux you'll need to specify `libstdc++`.
+Use `_GLIBCXX_USE_CXX11_ABI` as follows:
+
+```shell script
+cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -D_GLIBCXX_USE_CXX11_ABI=ON
+cmake --build build
+```
+
+## Running the tests
+
+Tests requires `YTC_TESTS_ROOT` environment variable to use fixtures.
+To run tests use commands from the project root as follows:
+
+```shell script
+export YTC_TESTS_ROOT=$(pwd)/tests
+cmake --build build --target check
+```
+
 ## Further Reading
 
 - [Conan Examples][conan examples]
