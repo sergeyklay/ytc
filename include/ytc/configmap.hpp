@@ -13,6 +13,12 @@ public:
 
   bool operator==(const ConfigMap &rhs) const;
 
+  void SetVersion(std::string version);
+  void SetKind(std::string kind);
+  void SetMeta(Metadata meta);
+  void SetData(std::map<std::string, std::string> data);
+  void SetFile(std::string file);
+
 private:
   std::string version_;
   std::string kind_;

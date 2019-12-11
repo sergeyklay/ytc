@@ -6,12 +6,12 @@
 YTC is a Yaml Template Class example. The main goal of this project is to show a possible strategy to
 convert user data types using [yaml-cpp][yaml-cpp-link].
 
-# Getting Started
+## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for
 development and testing purposes.
 
-## Prerequisites
+### Prerequisites
 
 To build YTC you need the following requirements:
 
@@ -30,10 +30,11 @@ For the full dependency list see `conanfile.txt` file located in the sources roo
 [codacy-link]:  https://www.codacy.com/manual/klay/ytc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sergeyklay/ytc&amp;utm_campaign=Badge_Grade
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 [yaml-cpp-link]: https://github.com/jbeder/yaml-cpp
+[yaml-tutor]: https://github.com/jbeder/yaml-cpp/wiki/Tutorial
 [gcc-link]: https://gcc.gnu.org
 [clang-link]: https://clang.llvm.org
 [apple-link]: https://apps.apple.com/us/app/xcode/id497799835
 [cmake-link]: https://cmake.org/
 [conan-link]: https://conan.io
 [conan-examples]: https://github.com/conan-io/examples
-[yaml-tutor]: https://github.com/jbeder/yaml-cpp/wiki/Tutorial
+
