@@ -42,10 +42,6 @@ jobs:
             compiler: xcode
             version: 'NOT USED'
 
-    env:
-      YTC_TESTS_ROOT: "${GITHUB_WORKSPACE}/tests"
-      DEBIAN_FRONTEND: noninteractive
-
     steps:
       - uses: actions/checkout@v2-beta
         with:
@@ -54,6 +50,8 @@ jobs:
       - name: Setup Prerequisites (Linux, Generic)
         if: runner.os == 'Linux'
         run: |
+          echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
           sudo apt-get update --quiet --yes 1>/dev/null
 
