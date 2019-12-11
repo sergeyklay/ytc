@@ -91,12 +91,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create conan profile
+        run: |
+          conan profile new default --detect
+          conan profile update settings.compiler.libcxx=libstdc++11 default
+
       - name: Configure x64 Debug
         run: |
           $CC --version
           cmake --version
-
-          conan profile update settings.compiler.libcxx=libstdc++11 default
 
           cmake -S . -Bbuild/Debug -DCMAKE_BUILD_TYPE=Debug
           echo ::set-env name=YTC_TESTS_ROOT::${GITHUB_WORKSPACE}/tests
