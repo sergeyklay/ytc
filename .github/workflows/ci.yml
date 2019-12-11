@@ -109,3 +109,6 @@ jobs:
 
       - name: Build x64 Debug
         run: cmake --build build -j "$(getconf _NPROCESSORS_ONLN)"
+
+      - name: Run Tests
+        run: cmake --build build --target check

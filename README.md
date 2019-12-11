@@ -68,14 +68,14 @@ cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -D_GLIBCXX_USE_CXX11_ABI=ON
 cmake --build build
 ```
 
-### Run tests
+## Running the tests
 
 Tests requires `YTC_TESTS_ROOT` environment variable to use fixtures.
+To run tests use commands from the project root as follows:
 
 ```shell script
-cd build
-
-YTC_TESTS_ROOT=$(pwd)/tests make check
+export YTC_TESTS_ROOT=$(pwd)/tests
+cmake --build build --target check
 ```
 
 ## Further Reading
