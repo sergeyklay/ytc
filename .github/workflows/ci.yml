@@ -42,6 +42,9 @@ jobs:
             compiler: xcode
             version: 'NOT USED'
 
+    env:
+      ZEPHIR_TESTS_ROOT: "${GITHUB_WORKSPACE}/tests"
+
     steps:
       - uses: actions/checkout@v2-beta
         with:

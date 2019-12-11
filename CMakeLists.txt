@@ -29,3 +29,12 @@ conan_cmake_run(
   BUILD missing)
 
 add_subdirectory(src)
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  include(CTest)
+endif()
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
+  message(STATUS "Include test sources")
+  add_subdirectory(tests)
+endif()
