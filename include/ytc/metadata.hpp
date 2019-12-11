@@ -8,10 +8,9 @@ public:
   Metadata();
   bool operator==(const Metadata &rhs) const;
 
-private:
-  std::string created_at_;
-  std::string name_;
-  std::string ns_;
+  std::string created_at;
+  std::string name;
+  std::string ns;
 };
 
 #endif // YTC_CONFIGMAP_HPP_

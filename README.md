@@ -5,8 +5,9 @@
 [![Codacy Badge][codacy badge]][codacy link]
 [![License: MIT][license badge]](./LICENSE)
 
-YTC is a Yaml Template Class example. The main goal of this project is to show a possible strategy to
-convert user data types using [yaml-cpp][yaml-cpp link].
+YTC (a Yaml Template Class example) is an `yaml-cpp` example project.
+The main goal of this project is to show a possible strategy to convert user data types using
+[yaml-cpp][yaml-cpp link].
 
 ## Getting Started
 
