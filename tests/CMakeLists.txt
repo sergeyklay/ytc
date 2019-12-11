@@ -19,8 +19,8 @@ target_include_directories(configmap_test
           $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/configmap>)
 
 target_link_libraries(configmap_test
-  PRIVATE CONAN_PKG::GTest
-  PUBLIC  configmap)
+  PUBLIC  configmap
+  PRIVATE CONAN_PKG::GTest)
 
 gtest_discover_tests(configmap_test
   TEST_PREFIX gtest:
