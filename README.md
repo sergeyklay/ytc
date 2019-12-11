@@ -22,16 +22,16 @@ To build YTC you need the following requirements:
 - [cmake][cmake link] 3.11 or later
 - [conan][conan link] decentralized package manager with a client-server architecture
 
-For the full dependency list see `conanfile.txt` file located in the sources root.
+For project dependencies list see `conanfile.txt` bundled with this project.
 
 If you're using Ubuntu, you can install the required packages this way:
 ```shell script
-sudo apt install gcc cmake pkg-config build-essential
+sudo apt install gcc cmake build-essential
 ```
 
-On macOS you will need to use brew with a command as follows:
+On macOS you most likely have a compiler so you'll need only cmake:
 ```shell script
-brew install cmake pkg-config
+brew install cmake
 ```
 
 Please note that specific versions of libraries and programs at the time of reading this guide may vary.
@@ -58,14 +58,6 @@ Then build project as follows:
 
 ```shell script
 cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug
-cmake --build build
-```
-
-Most likely, with clang 5.0 on Linux you'll need to specify `libstdc++`.
-Use `_GLIBCXX_USE_CXX11_ABI` as follows:
-
-```shell script
-cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -D_GLIBCXX_USE_CXX11_ABI=ON
 cmake --build build
 ```
 
