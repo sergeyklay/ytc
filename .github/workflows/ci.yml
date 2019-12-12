@@ -121,33 +121,33 @@ jobs:
       - name: Build x64 Debug
         run: cmake --build build -j "$(getconf _NPROCESSORS_ONLN)"
 
-      - name: Create lcov report
-        if: matrix.ccov == 'ON'
-        run: lcov --directory . --capture --output-file ./tests/coverage.info
-
       - name: Run Tests
         run: cmake --build build --target check
+
+      - name: Create lcov report
+        if: matrix.ccov == 'ON'
+        run: lcov --directory build --capture --output-file ./build/coverage.info
 
       - name: Filter out extra files
         if: matrix.ccov == 'ON'
         run: |
           lcov \
-            --remove ./tests/coverage.info \
+            --remove ./build/coverage.info \
             '/usr/*'                       \
             "${HOME}"'/.conan/*'           \
             '*/tests/*'                    \
-            --output-file ./tests/coverage.info
+            --output-file ./build/coverage.info
 
       - name: Output coverage data for debugging
         if: matrix.ccov == 'ON'
-        run: lcov --list ./tests/coverage.info
+        run: lcov --list ./build/coverage.info
 
       - name: Upload code coverage report
         if: matrix.ccov == 'ON'
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./tests/coverage.info
+          file: ./build/coverage.info
           name: codecov-umbrella
           flags: unittests
           fail_ci_if_error: false
