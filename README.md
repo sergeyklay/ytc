@@ -121,9 +121,9 @@ genhtml ./build/coverage.info --output-directory ./build/coverage
 
 ## Further Reading
 
+- [CodeCov documentation][codecov docs]
 - [Conan Examples][conan examples]
 - [yaml-cpp tutorial][yaml tutor]
-- [CodeCov documentation][codecov docs]
 
 ## License
 

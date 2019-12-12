@@ -6,7 +6,7 @@
 
 namespace YAML {
 template <> struct convert<ConfigMapPtr> {
-  static Node encode(const ConfigMapPtr &rhs);
+  static Node encode(const ConfigMapPtr &cptr);
   static bool decode(const Node &node, ConfigMapPtr &cptr);
 };
 } // namespace YAML
