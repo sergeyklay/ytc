@@ -131,9 +131,8 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 [actions link]: https://github.com/sergeyklay/ytc/actions
 [actions badge]: https://github.com/sergeyklay/ytc/workflows/build/badge.svg
-[lcov link]: http://ltp.sourceforge.net/coverage/lcov.php
-[codecov link]: [https://codecov.io]
-[codecov docs]: [https://docs.codecov.io]
+[codecov link]: https://codecov.io
+[codecov docs]: https://docs.codecov.io
 [coverage badge]: https://codecov.io/gh/sergeyklay/ytc/branch/master/graph/badge.svg
 [coverage link]: https://codecov.io/gh/sergeyklay/ytc
 [codacy badge]: https://api.codacy.com/project/badge/Grade/158b7d0c184147ce9d13e087f1983b6c
@@ -150,3 +149,4 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 [pip link]: https://pip.pypa.io
 [gtest link]: https://github.com/google/googletest
 [actions link]: https://github.com/features/actions
+[lcov link]: http://ltp.sourceforge.net/coverage/lcov.php
