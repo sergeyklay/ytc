@@ -11,12 +11,15 @@ The main goal of this project is to show a possible strategy to convert user dat
 
 This project build with following tools:
 - C++ version: `C++17`
-- Build system: [`CMake`][cmake link]
 - C++ compiler: **Gcc**, **Clang** and **Apple Clang**
-- Libraries: STL + [`yaml-cpp`][yaml-cpp link]
+- Source: multiple files
+- Package manager: [Conan][conan link]
+- Build system: [CMake][cmake link]
+- Libraries: STL, [`yaml-cpp`][yaml-cpp link]
 - Code coverage report: [`lcov`][lcov link]
 - [CodeCov][codecov link] (code coverage is measured by CodeCov)
-- Source: multiple files
+- Testing framework: [Google Tests][gtest link]
+- CI: [GitHub Actions][actions link]
 
 ## How to try it out
 
@@ -28,8 +31,8 @@ development and testing purposes.
 To build YTC you need the following requirements:
 
 - A C++ compiler such as [Gcc][gcc link] >= 7.0.0, [Clang][clang link] >= 5.0.0 or [Apple Clang][apple link] >= 10.0.0
-- [cmake][cmake link] 3.11 or later
-- [conan][conan link] decentralized package manager with a client-server architecture
+- [CMake][cmake link] 3.11 or later
+- [Conan][conan link] decentralized package manager with a client-server architecture
 
 To enable test coverage reports you need the following requirements:
 - `lcov`
@@ -77,7 +80,7 @@ cmake --build build
 ### Running the tests
 
 Tests expect `YTC_TESTS_ROOT` environment variable to use fixtures. This
-variable should point to the test directory root. Set this variable and
+variable should point to the tests directory root. Set this variable and
 run the tests as follows:
 
 ```shell script
@@ -145,3 +148,5 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 [conan link]: https://conan.io
 [conan examples]: https://github.com/conan-io/examples
 [pip link]: https://pip.pypa.io
+[gtest link]: https://github.com/google/googletest
+[actions link]: https://github.com/features/actions
