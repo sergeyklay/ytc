@@ -7,6 +7,7 @@
 class Metadata {
 public:
   Metadata();
+  explicit Metadata(std::string created_at, std::string name, std::string ns);
 
   bool operator==(const Metadata &rhs) const;
   Metadata &operator=(const Metadata &rhs);

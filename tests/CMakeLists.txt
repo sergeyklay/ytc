@@ -1,6 +1,5 @@
 # Conan bootstrap
-include(${CMAKE_BINARY_DIR}/conan.cmake)
-conan_check(REQUIRED)
+conan_bootstrap()
 
 conan_cmake_run(
   CONANFILE conanfile.txt
