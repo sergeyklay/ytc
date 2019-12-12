@@ -20,5 +20,7 @@ TEST(ConfigMapTest, ParseFile) {
   EXPECT_EQ(c->version, "v1");
   EXPECT_EQ(c->kind, "ConfigMap");
 
-  // EXPECT_EQ(c->GetFile(), "ConfigMap");
+  EXPECT_EQ(c->metadata.created_at, "2016-02-18T19:14:38Z");
+  EXPECT_EQ(c->metadata.name, "example-config");
+  EXPECT_EQ(c->metadata.ns, "default");
 }

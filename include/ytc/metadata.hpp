@@ -9,6 +9,7 @@ public:
   Metadata();
 
   bool operator==(const Metadata &rhs) const;
+  Metadata &operator=(const Metadata &rhs);
 
   std::string created_at;
   std::string name;

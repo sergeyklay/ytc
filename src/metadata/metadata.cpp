@@ -11,3 +11,5 @@ bool Metadata::operator==(const Metadata &rhs) const {
 
   return lhs_key == rhs_key;
 }
+
+Metadata &Metadata::operator=(const Metadata &rhs) = default;

@@ -22,10 +22,9 @@ bool YAML::convert<ConfigMapPtr>::decode(const YAML::Node &node,
   }
 
   if (node["metadata"] && node["metadata"].IsMap()) {
-    // TODO(serghei): Not implemented
-    // MetadataPtr m = std::make_shared<Metadata>();
-    // YAML::convert<MetadataPtr>::decode(node["metadata"], m);
-    // rhs->metadata = m.get();
+    MetadataPtr m = std::make_shared<Metadata>();
+    YAML::convert<MetadataPtr>::decode(node["metadata"], m);
+    rhs->metadata = *m.get();
   }
 
   if (node["data"] && node["data"].IsMap()) {

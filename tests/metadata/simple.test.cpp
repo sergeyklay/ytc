@@ -18,9 +18,3 @@ TEST(MetadataTest, ParseFile) {
   EXPECT_EQ(m->name, "example-config");
   EXPECT_EQ(m->ns, "default");
 }
-
-/**
-
-
-
-  */
