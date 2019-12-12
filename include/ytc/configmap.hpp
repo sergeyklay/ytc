@@ -14,7 +14,7 @@ public:
 
   std::string version;
   std::string kind;
-  Metadata meta;
+  Metadata metadata;
   std::map<std::string, std::string> data;
   std::string file;
 };

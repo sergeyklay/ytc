@@ -1,12 +1,15 @@
 #ifndef YTC_METADATA_HPP_
 #define YTC_METADATA_HPP_
 
+#include "ytc/metadata/yaml/metadata.hpp"
 #include <string>
 
 class Metadata {
 public:
   Metadata();
+
   bool operator==(const Metadata &rhs) const;
+  Metadata &operator=(const Metadata &rhs);
 
   std::string created_at;
   std::string name;

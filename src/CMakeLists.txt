@@ -1,4 +1,5 @@
 # YTC libraries
+add_subdirectory(metadata)
 add_subdirectory(configmap)
 
 # Main
@@ -8,4 +9,5 @@ target_include_directories(ytc
   PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-target_link_libraries(ytc PUBLIC configmap)
+target_link_libraries(ytc
+  PUBLIC metadata configmap)
