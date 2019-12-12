@@ -22,8 +22,8 @@ target_include_directories(metadata_test
           $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/metadata_>)
 
 target_link_libraries(metadata_test
-  PUBLIC  metadata
-  PRIVATE CONAN_PKG::GTest)
+  PRIVATE metadata
+          CONAN_PKG::GTest)
 
 gtest_discover_tests(metadata_test
   TEST_PREFIX gtest:
@@ -41,8 +41,9 @@ target_include_directories(configmap_test
           $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/configmap>)
 
 target_link_libraries(configmap_test
-  PUBLIC  metadata configmap
-  PRIVATE CONAN_PKG::GTest)
+  PRIVATE metadata
+          configmap
+          CONAN_PKG::GTest)
 
 gtest_discover_tests(configmap_test
   TEST_PREFIX gtest:

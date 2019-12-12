@@ -9,7 +9,19 @@ YTC (a Yaml Template Class example) is an `yaml-cpp` example project.
 The main goal of this project is to show a possible strategy to convert user data types using
 [yaml-cpp][yaml-cpp link].
 
-## Getting Started
+This project build with following tools:
+- C++ version: `C++17`
+- C++ compiler: **Gcc**, **Clang** and **Apple Clang**
+- Source: multiple files
+- Package manager: [Conan][conan link]
+- Build system: [CMake][cmake link]
+- Libraries: STL, [`yaml-cpp`][yaml-cpp link]
+- Code coverage report: [`lcov`][lcov link]
+- [CodeCov][codecov link] (code coverage is measured by CodeCov)
+- Testing framework: [Google Tests][gtest link]
+- CI: [GitHub Actions][actions feature]
+
+## How to try it out
 
 These instructions will get you a copy of the project up and running on your local machine for
 development and testing purposes.
@@ -19,8 +31,12 @@ development and testing purposes.
 To build YTC you need the following requirements:
 
 - A C++ compiler such as [Gcc][gcc link] >= 7.0.0, [Clang][clang link] >= 5.0.0 or [Apple Clang][apple link] >= 10.0.0
-- [cmake][cmake link] 3.11 or later
-- [conan][conan link] decentralized package manager with a client-server architecture
+- [CMake][cmake link] 3.11 or later
+- [Conan][conan link] decentralized package manager with a client-server architecture
+
+To enable test coverage reports you need the following requirements:
+- `lcov`
+- `genhtml`
 
 For project dependencies list see `conanfile.txt` bundled with this project.
 
@@ -61,10 +77,10 @@ cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ```
 
-## Running the tests
+### Running the tests
 
 Tests expect `YTC_TESTS_ROOT` environment variable to use fixtures. This
-variable should point to the test directory root. Set this variable and
+variable should point to the tests directory root. Set this variable and
 run the tests as follows:
 
 ```shell script
@@ -72,13 +88,51 @@ export YTC_TESTS_ROOT=$(pwd)/tests
 cmake --build build --target check
 ```
 
+### Generate HTML code coverage report
+
+Follow these steps:
+
+1. Configure with code coverage instrumentation enabled `-DCODE_COVERAGE=ON`
+2. Build project
+3. Execute the tests to generate the coverage data
+4. Generate and customize reports as follows:
+
+```shell script
+# Create lcov report
+lcov --directory build --capture --output-file ./build/coverage.info
+
+# Filter out extra files
+lcov \
+    --remove ./build/coverage.info \
+    '/usr/*'                       \
+    "${HOME}"'/.conan/*'           \
+    '*/tests/*'                    \
+    --output-file ./build/coverage.info
+
+# Output coverage data for debugging (Optional)
+lcov --list ./build/coverage.info
+
+# Create a directory to store HTML report 
+mkdir ./build/coverage
+
+# Generate HTML report
+genhtml ./build/coverage.info --output-directory ./build/coverage
+```
+
 ## Further Reading
 
 - [Conan Examples][conan examples]
 - [yaml-cpp tutorial][yaml tutor]
+- [CodeCov documentation][codecov docs]
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 [actions link]: https://github.com/sergeyklay/ytc/actions
 [actions badge]: https://github.com/sergeyklay/ytc/workflows/build/badge.svg
+[codecov link]: https://codecov.io
+[codecov docs]: https://docs.codecov.io
 [coverage badge]: https://codecov.io/gh/sergeyklay/ytc/branch/master/graph/badge.svg
 [coverage link]: https://codecov.io/gh/sergeyklay/ytc
 [codacy badge]: https://api.codacy.com/project/badge/Grade/158b7d0c184147ce9d13e087f1983b6c
@@ -93,3 +147,6 @@ cmake --build build --target check
 [conan link]: https://conan.io
 [conan examples]: https://github.com/conan-io/examples
 [pip link]: https://pip.pypa.io
+[gtest link]: https://github.com/google/googletest
+[actions feature]: https://github.com/features/actions
+[lcov link]: http://ltp.sourceforge.net/coverage/lcov.php

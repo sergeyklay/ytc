@@ -8,23 +8,21 @@ project(ytc
 # See: https://github.com/conan-io/cmake-conan/issues/159
 cmake_policy(SET CMP0025 NEW)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+# Provide path for cmake scripts
+list(APPEND CMAKE_MODULE_PATH ${ytc_SOURCE_DIR}/cmake)
+
+include(language-standard)
+include(conan-bootstrap)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
-# Conan bootstrap
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
-  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
-  file(DOWNLOAD "https://github.com/conan-io/cmake-conan/raw/v0.14/conan.cmake"
-    "${CMAKE_BINARY_DIR}/conan.cmake")
-endif()
+# Set the compiler standard to C++17
+cxx_17()
 
-include(${CMAKE_BINARY_DIR}/conan.cmake)
-conan_check(REQUIRED)
+# Conan bootstrap
+conan_bootstrap()
 
 conan_cmake_run(
   CONANFILE conanfile.txt
@@ -33,6 +31,25 @@ conan_cmake_run(
 
 # Adjusts the standard library flags (libc++`, libstdc++, libstdc++11)
 conan_set_libcxx()
+
+# Code Coverage Configuration
+add_library(coverage_config INTERFACE)
+
+option(CODE_COVERAGE "Builds targets with code coverage instrumentation." OFF)
+if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  # Add required flags (GCC & LLVM/Clang)
+  target_compile_options(coverage_config INTERFACE
+    -O0        # no optimization
+    -g         # generate debug info
+    --coverage # sets all required flags
+    )
+
+  if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+    target_link_options(coverage_config INTERFACE --coverage)
+  else()
+    target_link_libraries(coverage_config INTERFACE --coverage)
+  endif()
+endif()
 
 add_subdirectory(src)
 
