@@ -33,14 +33,17 @@ jobs:
             os: ubuntu-18.04
             compiler: gcc
             version: '7'
+            ccov: ON
           - name: ubuntu-18.04-clang-5.0
             os: ubuntu-18.04
             compiler: clang
             version: '5.0'
+            ccov: OFF
           - name: macOS-latest
             os: macOS-latest
             compiler: xcode
             version: 'NOT USED'
+            ccov: OFF
 
     steps:
       - uses: actions/checkout@v2-beta
@@ -53,6 +56,10 @@ jobs:
           echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
           sudo apt-get update --quiet --yes 1>/dev/null
+
+          if [ "${{ matrix.ccov }}" = "ON" ]; then
+            sudo apt-get install --no-install-recommends -q -y lcov
+          fi
 
           if [ "${{ matrix.compiler }}" = "gcc" ]; then
             sudo apt-get install --no-install-recommends -q -y gcc-${{ matrix.version }}
@@ -108,11 +115,39 @@ jobs:
           $CC --version
           cmake --version
 
-          cmake -S . -Bbuild -DCMAKE_BUILD_TYPE=Debug
+          cmake -S . -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCODE_COVERAGE=${{ matrix.ccov }}
           echo ::set-env name=YTC_TESTS_ROOT::${GITHUB_WORKSPACE}/tests
 
       - name: Build x64 Debug
         run: cmake --build build -j "$(getconf _NPROCESSORS_ONLN)"
 
+      - name: Create lcov report
+        if: matrix.ccov == 'ON'
+        run: lcov --directory . --capture --output-file ./tests/coverage.info
+
       - name: Run Tests
         run: cmake --build build --target check
+
+      - name: Filter out extra files
+        if: matrix.ccov == 'ON'
+        run: |
+          lcov \
+            --remove ./tests/coverage.info \
+            '/usr/*'                       \
+            "${HOME}"'/.conan/*'           \
+            '*/tests/*'                    \
+            --output-file ./tests/coverage.info
+
+      - name: Output coverage data for debugging
+        if: matrix.ccov == 'ON'
+        run: lcov --list ./tests/coverage.info
+
+      - name: Upload code coverage report
+        if: matrix.ccov == 'ON'
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./tests/coverage.info
+          name: codecov-umbrella
+          flags: unittests
+          fail_ci_if_error: false
