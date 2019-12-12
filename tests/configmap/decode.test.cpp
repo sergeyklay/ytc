@@ -25,3 +25,9 @@ TEST(ConfigMapTest, ParseFile) {
   EXPECT_TRUE(YAML::convert<ConfigMapPtr>::decode(node, actual));
   EXPECT_EQ(*actual, expected);
 }
+
+TEST(ConfigMapTest, DecodeInvalid) {
+  YAML::Node node = YAML::Load("foo: bar");
+  ConfigMapPtr actual = std::make_shared<ConfigMap>();
+  EXPECT_FALSE(YAML::convert<ConfigMapPtr>::decode(node["foo"], actual));
+}

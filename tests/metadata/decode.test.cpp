@@ -14,3 +14,9 @@ TEST(MetadataTest, DecodeString) {
   EXPECT_TRUE(YAML::convert<MetadataPtr>::decode(node["metadata"], actual));
   EXPECT_EQ(*actual, expected);
 }
+
+TEST(MetadataTest, DecodeInvalid) {
+  YAML::Node node = YAML::Load("foo: bar");
+  MetadataPtr actual = std::make_shared<Metadata>();
+  EXPECT_FALSE(YAML::convert<MetadataPtr>::decode(node["foo"], actual));
+}
