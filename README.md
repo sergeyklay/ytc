@@ -19,7 +19,7 @@ This project build with following tools:
 - Code coverage report: [`lcov`][lcov link]
 - [CodeCov][codecov link] (code coverage is measured by CodeCov)
 - Testing framework: [Google Tests][gtest link]
-- CI: [GitHub Actions][actions link]
+- CI: [GitHub Actions][actions feature]
 
 ## How to try it out
 
@@ -148,5 +148,5 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 [conan examples]: https://github.com/conan-io/examples
 [pip link]: https://pip.pypa.io
 [gtest link]: https://github.com/google/googletest
-[actions link]: https://github.com/features/actions
+[actions feature]: https://github.com/features/actions
 [lcov link]: http://ltp.sourceforge.net/coverage/lcov.php
