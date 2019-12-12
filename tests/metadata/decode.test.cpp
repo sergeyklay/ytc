@@ -1,11 +1,9 @@
 #include <gtest/gtest.h>
 #include <yaml-cpp/yaml.h>
 
-#include <string>
-
 #include "ytc/metadata.hpp"
 
-TEST(MetadataTest, ParseString) {
+TEST(MetadataTest, DecodeString) {
   YAML::Node node =
       YAML::Load("metadata: {creationTimestamp: 2016-02-18T19:14:38Z, "
                  "name: example-config, namespace: default}");

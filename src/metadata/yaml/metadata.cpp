@@ -3,7 +3,11 @@
 
 YAML::Node YAML::convert<MetadataPtr>::encode(const MetadataPtr &mptr) {
   Node node;
-  // TODO(serghei): Not implemented
+
+  node["creationTimestamp"] = mptr->created_at_;
+  node["name"] = mptr->name_;
+  node["namespace"] = mptr->ns_;
+
   return node;
 }
 

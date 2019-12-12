@@ -1,6 +1,7 @@
 #ifndef YTC_CONFIGMAP_HPP_
 #define YTC_CONFIGMAP_HPP_
 
+#include <map>
 #include <string>
 
 #include "ytc/metadata.hpp"
@@ -15,7 +16,8 @@ public:
                      const Metadata &metadata, ConfigData data,
                      std::string file);
 
-  friend YAML::Node YAML::convert<ConfigMapPtr>::encode(const ConfigMapPtr &rhs);
+  friend YAML::Node
+  YAML::convert<ConfigMapPtr>::encode(const ConfigMapPtr &cptr);
   friend bool YAML::convert<ConfigMapPtr>::decode(const YAML::Node &node,
                                                   ConfigMapPtr &cptr);
 
