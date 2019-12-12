@@ -4,15 +4,15 @@
 #include <utility>
 
 Metadata::Metadata()
-    : created_at{"00-00-00T00:00:00Z"}, name{"example"}, ns{"ytc"} {}
+    : created_at_{"00-00-00T00:00:00Z"}, name_{"example"}, ns_{"ytc"} {}
 
-Metadata::Metadata(std::string created_at_, std::string name_, std::string ns_)
-    : created_at(std::move(created_at_)), name(std::move(name_)),
-      ns(std::move(ns_)) {}
+Metadata::Metadata(std::string created_at, std::string name, std::string ns)
+    : created_at_(std::move(created_at)), name_(std::move(name)),
+      ns_(std::move(ns)) {}
 
 bool Metadata::operator==(const Metadata &rhs) const {
-  auto lhs_key = std::tie(created_at, name, ns);
-  auto rhs_key = std::tie(rhs.created_at, rhs.name, rhs.ns);
+  auto lhs_key = std::tie(created_at_, name_, ns_);
+  auto rhs_key = std::tie(rhs.created_at_, rhs.name_, rhs.ns_);
 
   return lhs_key == rhs_key;
 }
