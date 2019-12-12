@@ -4,7 +4,7 @@
 YAML::Node YAML::convert<ConfigMapPtr>::encode(const ConfigMapPtr &cptr) {
   Node node;
 
-  node["version"] = cptr->version_;
+  node["apiVersion"] = cptr->version_;
   node["kind"] = cptr->kind_;
   node["metadata"] = std::make_shared<Metadata>(cptr->metadata_);
   node["data"] = cptr->data_;
