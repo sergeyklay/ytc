@@ -3,16 +3,10 @@
 
 #include <string>
 
-#include "env/base.hpp"
 #include "ytc/configmap.hpp"
 #include "ytc/metadata.hpp"
 
 TEST(ConfigMapTest, EncodeClass) {
-  auto tests_root = TestEnvironment::tests_root();
-  if (tests_root.empty()) {
-    GTEST_SKIP();
-  }
-
   Metadata metadata{"2019-12-31T23:59:59Z", "ho-ho-ho", "old-year"};
   ConfigMap configmap(
       "v1", "ConfigMap", metadata,
