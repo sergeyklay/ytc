@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include <yaml-cpp/yaml.h>
 
-#include <string>
-
 #include "env/base.hpp"
 #include "ytc/configmap.hpp"
 
