@@ -17,8 +17,7 @@ add_executable(metadata_test
 
 target_include_directories(metadata_test
   PUBLIC  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-          $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/metadata_>)
+  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
 target_link_libraries(metadata_test
   PRIVATE metadata
@@ -36,8 +35,7 @@ add_executable(configmap_test
 
 target_include_directories(configmap_test
   PUBLIC  $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-          $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/configmap>)
+  PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 
 target_link_libraries(configmap_test
   PRIVATE metadata
