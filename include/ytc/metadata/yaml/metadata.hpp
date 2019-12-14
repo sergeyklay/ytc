@@ -1,8 +1,8 @@
 #ifndef YTC_METADATA_YAML_CONFIGMAP_HPP_
 #define YTC_METADATA_YAML_CONFIGMAP_HPP_
 
-#include "ytc/metadata/ptr/metadata.hpp"
 #include <yaml-cpp/yaml.h>
+#include <ytc/metadata/ptr/metadata.hpp>
 
 namespace YAML {
 template <> struct convert<MetadataPtr> {

@@ -1,8 +1,8 @@
 #ifndef YTC_METADATA_HPP_
 #define YTC_METADATA_HPP_
 
-#include "ytc/metadata/yaml/metadata.hpp"
 #include <string>
+#include <ytc/metadata/yaml/metadata.hpp>
 
 class Metadata {
 public:

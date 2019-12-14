@@ -1,8 +1,8 @@
 #ifndef YTC_YAML_CONFIGMAP_HPP_
 #define YTC_YAML_CONFIGMAP_HPP_
 
-#include "ytc/ptr/configmap.hpp"
 #include <yaml-cpp/yaml.h>
+#include <ytc/ptr/configmap.hpp>
 
 namespace YAML {
 template <> struct convert<ConfigMapPtr> {

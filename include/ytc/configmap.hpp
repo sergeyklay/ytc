@@ -4,8 +4,8 @@
 #include <map>
 #include <string>
 
-#include "ytc/metadata.hpp"
-#include "ytc/yaml/configmap.hpp"
+#include <ytc/metadata.hpp>
+#include <ytc/yaml/configmap.hpp>
 
 using ConfigData = std::map<std::string, std::string>;
 

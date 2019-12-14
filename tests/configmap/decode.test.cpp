@@ -2,7 +2,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include "env/base.hpp"
-#include "ytc/configmap.hpp"
+#include <ytc/configmap.hpp>
 
 TEST(ConfigMapTest, ParseFile) {
   auto tests_root = TestEnvironment::tests_root();

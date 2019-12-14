@@ -1,5 +1,4 @@
-#include "ytc/yaml/configmap.hpp"
-#include "ytc/configmap.hpp"
+#include <ytc/configmap.hpp>
 
 YAML::Node YAML::convert<ConfigMapPtr>::encode(const ConfigMapPtr &cptr) {
   Node node;

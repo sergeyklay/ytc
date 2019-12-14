@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <yaml-cpp/yaml.h>
 
-#include "ytc/metadata.hpp"
+#include <ytc/metadata.hpp>
 
 TEST(MetadataTest, DecodeString) {
   YAML::Node node =
