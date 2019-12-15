@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "ytc/metadata.hpp"
+#include <ytc/metadata.hpp>
 
 TEST(MetadataTest, EncodeClass) {
   MetadataPtr metadata = std::make_shared<Metadata>(

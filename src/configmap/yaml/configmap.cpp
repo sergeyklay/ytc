@@ -1,5 +1,4 @@
-#include "ytc/yaml/configmap.hpp"
-#include "ytc/configmap.hpp"
+#include <ytc/configmap.hpp>
 
 YAML::Node YAML::convert<ConfigMapPtr>::encode(const ConfigMapPtr &cptr) {
   Node node;
@@ -28,9 +27,9 @@ bool YAML::convert<ConfigMapPtr>::decode(const YAML::Node &node,
   }
 
   if (node["metadata"] && node["metadata"].IsMap()) {
-    MetadataPtr m = std::make_shared<Metadata>();
+    auto m = std::make_shared<Metadata>();
     YAML::convert<MetadataPtr>::decode(node["metadata"], m);
-    cptr->metadata_ = *m.get();
+    cptr->metadata_ = *m;
   }
 
   if (node["data"] && node["data"].IsMap()) {

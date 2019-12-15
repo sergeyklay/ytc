@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "ytc/configmap.hpp"
-#include "ytc/metadata.hpp"
+#include <ytc/configmap.hpp>
+#include <ytc/metadata.hpp>
 
 TEST(ConfigMapTest, EncodeClass) {
   Metadata metadata{"2019-12-31T23:59:59Z", "ho-ho-ho", "old-year"};

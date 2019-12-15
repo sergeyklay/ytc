@@ -1,5 +1,4 @@
-#include "ytc/metadata/yaml/metadata.hpp"
-#include "ytc/metadata.hpp"
+#include <ytc/metadata.hpp>
 
 YAML::Node YAML::convert<MetadataPtr>::encode(const MetadataPtr &mptr) {
   Node node;

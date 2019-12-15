@@ -8,6 +8,14 @@ project(ytc
 # See: https://github.com/conan-io/cmake-conan/issues/159
 cmake_policy(SET CMP0025 NEW)
 
+# Determine if ytc is built as a subproject (using add_subdirectory) or if it
+# is the master project.
+set(MASTER_PROJECT OFF)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(MASTER_PROJECT ON)
+  message(STATUS "CMake version: ${CMAKE_VERSION}")
+endif()
+
 # Provide path for cmake scripts
 list(APPEND CMAKE_MODULE_PATH ${ytc_SOURCE_DIR}/cmake)
 
@@ -53,11 +61,11 @@ endif()
 
 add_subdirectory(src)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if(MASTER_PROJECT)
   include(CTest)
 endif()
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
+if(MASTER_PROJECT AND BUILD_TESTING)
   message(STATUS "Include test sources")
   add_subdirectory(tests)
 endif()
