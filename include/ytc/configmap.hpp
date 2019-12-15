@@ -16,8 +16,22 @@ public:
                      const Metadata &metadata, ConfigData data,
                      std::string file);
 
+  /**
+   * @brief Encode ConfigMap object to a Yaml Node.
+   *
+   * @param cptr The smart pointer to a ConfigMap instance
+   * @return Yaml Node
+   */
   friend YAML::Node
   YAML::convert<ConfigMapPtr>::encode(const ConfigMapPtr &cptr);
+
+  /**
+   * @brief Decode Yaml Node to a ConfigMap object.
+   *
+   * @param node Yaml Node
+   * @param cptr The smart pointer to a ConfigMap instance
+   * @return true on success, false otherwise
+   */
   friend bool YAML::convert<ConfigMapPtr>::decode(const YAML::Node &node,
                                                   ConfigMapPtr &cptr);
 

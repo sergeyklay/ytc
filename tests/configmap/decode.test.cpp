@@ -10,8 +10,8 @@ TEST(ConfigMapTest, ParseFile) {
     GTEST_SKIP();
   }
 
-  YAML::Node node = YAML::LoadFile(tests_root + "/fixtures/configmap.yml");
-  ConfigMapPtr actual = std::make_shared<ConfigMap>();
+  auto yaml = YAML::LoadFile(tests_root + "/fixtures/configmap.yml");
+  auto actual = std::make_shared<ConfigMap>();
 
   Metadata metadata{"2016-02-18T19:14:38Z", "example-config", "default"};
   ConfigMap expected(
@@ -22,12 +22,12 @@ TEST(ConfigMapTest, ParseFile) {
       },
       "property.1=value-1\nproperty.2=value-2\nproperty.3=value-3");
 
-  EXPECT_TRUE(YAML::convert<ConfigMapPtr>::decode(node, actual));
+  EXPECT_TRUE(YAML::convert<ConfigMapPtr>::decode(yaml, actual));
   EXPECT_EQ(*actual, expected);
 }
 
 TEST(ConfigMapTest, DecodeInvalid) {
-  YAML::Node node = YAML::Load("foo: bar");
+  YAML::Node yaml = YAML::Load("foo: bar");
   ConfigMapPtr actual = std::make_shared<ConfigMap>();
-  EXPECT_FALSE(YAML::convert<ConfigMapPtr>::decode(node["foo"], actual));
+  EXPECT_FALSE(YAML::convert<ConfigMapPtr>::decode(yaml["foo"], actual));
 }
