@@ -21,7 +21,7 @@ target_include_directories(metadata_test
 
 target_link_libraries(metadata_test
   PRIVATE metadata
-          CONAN_PKG::GTest)
+          CONAN_PKG::gtest)
 
 gtest_discover_tests(metadata_test
   TEST_PREFIX gtest:
@@ -40,7 +40,7 @@ target_include_directories(configmap_test
 target_link_libraries(configmap_test
   PRIVATE metadata
           configmap
-          CONAN_PKG::GTest)
+          CONAN_PKG::gtest)
 
 gtest_discover_tests(configmap_test
   TEST_PREFIX gtest:
