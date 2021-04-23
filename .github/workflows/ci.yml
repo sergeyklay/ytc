@@ -63,12 +63,12 @@ jobs:
 
           if [ "${{ matrix.compiler }}" = "gcc" ]; then
             sudo apt-get install --no-install-recommends -q -y gcc-${{ matrix.version }}
-            echo "::set-env name=CC::gcc-${{ matrix.version }}"
-            echo "::set-env name=CXX::g++-${{ matrix.version }}"
+            echo CC=gcc-${{ matrix.version }} >> $GITHUB_ENV
+            echo CXX=g++-${{ matrix.version }} >> $GITHUB_ENV
           else
             sudo apt-get install --no-install-recommends -q -y clang-${{ matrix.version }}
-            echo "::set-env name=CC::clang-${{ matrix.version }}"
-            echo "::set-env name=CXX::clang++-${{ matrix.version }}"
+            echo CC=clang-${{ matrix.version }} >> $GITHUB_ENV
+            echo CXX=clang++-${{ matrix.version }} >> $GITHUB_ENV
           fi
 
       - name: Setup Prerequisites (macOS)
@@ -76,10 +76,10 @@ jobs:
         run: |
           sudo xcode-select -switch /Applications/Xcode.app
 
-          echo "::set-env name=CC::$(xcrun -f clang)"
-          echo "::set-env name=CXX::$(xcrun -f clang++)"
-          echo "::set-env name=SDKROOT::$(xcodebuild -version -sdk macosx Path)"
-          echo "::set-env name=PATH::$(dirname $(xcrun -f clang)):$PATH"
+          echo CC=$(xcrun -f clang) >> $GITHUB_ENV
+          echo CXX=$(xcrun -f clang++) >> $GITHUB_ENV
+          echo "SDKROOT=$(xcodebuild -version -sdk macosx Path)" >> $GITHUB_ENV
+          echo "$(dirname $(xcrun -f clang))" >> $GITHUB_PATH
 
       - uses: actions/cache@v1
         name: Setup conan cache
@@ -116,7 +116,7 @@ jobs:
           cmake --version
 
           cmake -S . -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCODE_COVERAGE=${{ matrix.ccov }}
-          echo ::set-env name=YTC_TESTS_ROOT::${GITHUB_WORKSPACE}/tests
+          echo YTC_TESTS_ROOT=${GITHUB_WORKSPACE}/tests >> $GITHUB_ENV
 
       - name: Build x64 Debug
         run: cmake --build build -j "$(getconf _NPROCESSORS_ONLN)"
