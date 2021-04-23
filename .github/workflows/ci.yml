@@ -141,14 +141,3 @@ jobs:
       - name: Output coverage data for debugging
         if: matrix.ccov == 'ON'
         run: lcov --list ./build/coverage.info
-
-      - name: Upload code coverage report
-        if: matrix.ccov == 'ON'
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./build/coverage.info
-          yml: ./.codecov.yml
-          name: codecov-umbrella
-          flags: unittests
-          fail_ci_if_error: false
