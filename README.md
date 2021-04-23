@@ -1,7 +1,6 @@
 # YTC
 
 [![Actions Status][actions badge]][actions link]
-[![Coverage Status][coverage badge]][coverage link]
 [![Codacy Badge][codacy badge]][codacy link]
 [![License: MIT][license badge]](./LICENSE)
 
@@ -17,7 +16,6 @@ This project build with following tools:
 - Build system: [CMake][cmake link]
 - Libraries: STL, [`yaml-cpp`][yaml-cpp link]
 - Code coverage report: [`lcov`][lcov link]
-- [CodeCov][codecov link] (code coverage is measured by CodeCov)
 - Testing framework: [Google Tests][gtest link]
 - CI: [GitHub Actions][actions feature]
 
@@ -121,7 +119,6 @@ genhtml ./build/coverage.info --output-directory ./build/coverage
 
 ## Further Reading
 
-- [CodeCov documentation][codecov docs]
 - [Conan Examples][conan examples]
 - [yaml-cpp tutorial][yaml tutor]
 
@@ -131,10 +128,6 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 [actions link]: https://github.com/sergeyklay/ytc/actions
 [actions badge]: https://github.com/sergeyklay/ytc/workflows/build/badge.svg
-[codecov link]: https://codecov.io
-[codecov docs]: https://docs.codecov.io
-[coverage badge]: https://codecov.io/gh/sergeyklay/ytc/branch/master/graph/badge.svg
-[coverage link]: https://codecov.io/gh/sergeyklay/ytc
 [codacy badge]: https://api.codacy.com/project/badge/Grade/158b7d0c184147ce9d13e087f1983b6c
 [codacy link]:  https://www.codacy.com/manual/klay/ytc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sergeyklay/ytc&amp;utm_campaign=Badge_Grade
 [license badge]: https://img.shields.io/badge/License-MIT-blue.svg
