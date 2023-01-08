@@ -1,7 +1,6 @@
 # YTC
 
 [![Actions Status][actions badge]][actions link]
-[![Codacy Badge][codacy badge]][codacy link]
 [![License: MIT][license badge]](./LICENSE)
 
 YTC (a Yaml Template Class example) is an `yaml-cpp` example project.
@@ -128,8 +127,6 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 [actions link]: https://github.com/sergeyklay/ytc/actions
 [actions badge]: https://github.com/sergeyklay/ytc/workflows/build/badge.svg
-[codacy badge]: https://api.codacy.com/project/badge/Grade/158b7d0c184147ce9d13e087f1983b6c
-[codacy link]:  https://www.codacy.com/manual/klay/ytc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sergeyklay/ytc&amp;utm_campaign=Badge_Grade
 [license badge]: https://img.shields.io/badge/License-MIT-blue.svg
 [yaml-cpp link]: https://github.com/jbeder/yaml-cpp
 [yaml tutor]: https://github.com/jbeder/yaml-cpp/wiki/Tutorial
