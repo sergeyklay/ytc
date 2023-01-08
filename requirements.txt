@@ -1,3 +1,1 @@
-conan ~= 1.20
-pygments>=2.7.4 # not directly required, pinned by Snyk to avoid a vulnerability
-pyjwt>=2.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
+conan ~= 1.56.0
